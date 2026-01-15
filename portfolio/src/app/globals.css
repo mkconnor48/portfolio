@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  /* Design System Colors */
+  --color-brand-pink-light: #f472b6;
+  --color-brand-pink-dark: #ec4899;
+  --color-brand-blue-light: #60a5fa;
+  --color-brand-blue-dark: #3b82f6;
+
+  /* Custom Spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+
+  /* Layout */
+  --max-width-portfolio: 42rem;
+
+  /* Shadows */
+  --shadow-soft: 0 8px 30px rgb(0 0 0 / 0.04);
+
+  /* Fonts */
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    @apply border-slate-200 dark:border-slate-800 transition-colors duration-200;
+  }
+}
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #f1f5f9;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
