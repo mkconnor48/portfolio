@@ -5,7 +5,8 @@
 
 #### Scenario: Magnetic effect
 - **WHEN** 鼠标靠近按钮（半径 100px 内）
-- **THEN** 按钮 SHALL 向鼠标位置产生最大 20px 的偏移
+- **THEN** 按钮 SHALL 向鼠标位置产生偏移
+- **AND** 最大偏移距离 SHALL 限制在 20px 内（通过 `maxDistance` 参数控制）
 - **AND** 移动过程必须平滑（Spring Animation）
 
 ### Requirement: Skill Tag Animation

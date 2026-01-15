@@ -15,6 +15,7 @@
 - **磁吸按钮 (Magnetic Button)**:
     - 使用 Framer Motion 监听 `onMouseMove`。
     - 计算鼠标相对于按钮中心的偏移量，应用 `spring` 动画进行位移。
+    - **限制位移限程**：设置 `maxDistance`（默认 20px）防止位移过大导致视觉失衡或交互脱离。
 - **技能标签 (Skill Tags)**:
     - 悬停时应用 `y: -4` 的浮出效果。
     - 强制设置 `cursor: default` (箭头)。
