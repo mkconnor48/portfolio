@@ -7,7 +7,9 @@
 
 ## 2. Component Development
 - [x] 2.1 开发 `Button`：集成 `whileHover: { y: -4 }` 跳动动画
-- [x] 2.1.1 实现 `ThemeToggle`：支持白天黑夜模式切换
+- [x] 2.1.1 实现 `ThemeToggle`：支持白天黑夜模式切换 (具备跳动交互)
+- [x] 2.1.2 修复 Tailwind 4 与 `next-themes` 的类名适配问题 (添加 `@custom-variant dark`)
+- [x] 2.1.3 确保全站背景/文字响应 `.dark` 类名切换
 - [x] 2.2 增强 `Badge`：添加浮出动画和箭头指针
 - [x] 2.3 开发 `PDFViewer`：实现基础的 PDF 预览功能
 

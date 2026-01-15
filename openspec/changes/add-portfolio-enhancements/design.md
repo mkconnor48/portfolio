@@ -16,8 +16,14 @@
     - 统一使用 `whileHover: { y: -4 }`。
     - 使用 `spring` 物理特性实现平滑的跳动反馈。
 - **主题切换 (Theme Switching)**:
-    - 使用 `next-themes` 管理 `dark` 和 `light` 状态。
-    - 提供 `ThemeToggle` 组件，悬停时同样具备跳动反馈。
+    - **技术栈**: 使用 `next-themes` 实现。
+    - **配置**:
+        - 使用 `class` 策略（在 `html` 标签上切换 `.dark` 类）。
+        - Tailwind CSS 4 中需显式定义 `@custom-variant dark` 以支持类名选择器。
+    - **变量**:
+        - 统一通过 CSS 变量 `--background` 和 `--foreground` 管理基础色。
+        - 在 `.dark` 选择器下覆盖这些变量。
+    - **交互**: 提供 `ThemeToggle` 组件，悬停时同样具备跳动反馈。
 - **技能标签 (Skill Tags)**:
     - 悬停时应用 `y: -4` 的浮出效果。
     - 强制设置 `cursor: default` (箭头)。
