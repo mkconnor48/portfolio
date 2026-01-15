@@ -1,13 +1,12 @@
 ## ADDED Requirements
 
-### Requirement: Magnetic Interaction
-系统 SHALL 在核心行动按钮上应用磁吸效果。
+### Requirement: Button Interaction
+系统 SHALL 在按钮上应用跳动反馈效果。
 
-#### Scenario: Magnetic effect
-- **WHEN** 鼠标靠近按钮（半径 100px 内）
-- **THEN** 按钮 SHALL 向鼠标位置产生偏移
-- **AND** 最大偏移距离 SHALL 限制在 20px 内（通过 `maxDistance` 参数控制）
-- **AND** 移动过程必须平滑（Spring Animation）
+#### Scenario: Hover effect
+- **WHEN** 鼠标悬停在按钮上
+- **THEN** 按钮 SHALL 向上产生 4px 的位移
+- **AND** 移动过程必须平滑（Spring Animation: stiffness 400, damping 10）
 
 ### Requirement: Skill Tag Animation
 系统 SHALL 为技能标签提供浮出反馈。
