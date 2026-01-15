@@ -15,6 +15,9 @@
 - **按钮动画 (Button Animation)**:
     - 统一使用 `whileHover: { y: -4 }`。
     - 使用 `spring` 物理特性实现平滑的跳动反馈。
+- **主题切换 (Theme Switching)**:
+    - 使用 `next-themes` 管理 `dark` 和 `light` 状态。
+    - 提供 `ThemeToggle` 组件，悬停时同样具备跳动反馈。
 - **技能标签 (Skill Tags)**:
     - 悬停时应用 `y: -4` 的浮出效果。
     - 强制设置 `cursor: default` (箭头)。
