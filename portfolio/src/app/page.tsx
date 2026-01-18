@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Heading1,
   Heading2,
@@ -9,165 +11,359 @@ import {
 } from "@/components/typography";
 import { Card, Button, Badge, ThemeToggle } from "@/components/ui";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+// 页面浮出动画变体
+const pageFloatVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.02,
+    },
+  },
+};
+
+// 项目卡片浮出动画变体
+const projectFloatVariants = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+};
 
 export default function Home() {
   return (
-    <div className="space-y-22">
+    <motion.div 
+      className="space-y-28" 
+      variants={pageFloatVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {/* Theme Toggle */}
       <div className="fixed top-6 right-6 z-50">
         <ThemeToggle />
       </div>
 
       {/* Hero Section */}
-      <section className="space-y-6">
-        <div className="space-y-2">
+      <motion.section 
+        className="space-y-8" 
+        variants={pageFloatVariants}
+      >
+        <div className="space-y-4">
           <Heading1>
             我是 <GradientText>MKCONNOR</GradientText>
           </Heading1>
-          <div className="flex flex-wrap items-center gap-2 text-slate-500 dark:text-slate-400">
-            <span>广东水利电力职业技术学院</span>
-            <span>·</span>
-            <span>应届毕业生</span>
-            <span>·</span>
-            <span>广州</span>
-          </div>
+          <motion.div 
+            className="flex flex-wrap items-center gap-3 text-slate-500 dark:text-slate-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-sm font-medium">
+              广东水利电力职业技术学院
+            </span>
+            <span className="text-slate-300 dark:text-slate-600">·</span>
+            <span className="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium">
+              应届毕业生
+            </span>
+            <span className="text-slate-300 dark:text-slate-600">·</span>
+            <span className="px-3 py-1 rounded-full bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 text-sm font-medium">
+              广州
+            </span>
+          </motion.div>
         </div>
 
-        <BodyLarge className="max-w-xl">
+        <BodyLarge className="max-w-2xl">
           热爱编程和创造的开发者，专注于构建简洁、优雅且高效的 Web 应用。
           目前正在广州寻找前端开发或全栈开发的相关机会。
         </BodyLarge>
 
-        <div className="flex flex-wrap gap-4">
+        <motion.div 
+          className="flex flex-wrap gap-6 pt-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
           <Link href="/projects">
-            <Button>查看作品集</Button>
+            <Button className="px-8 py-3">查看作品集</Button>
           </Link>
           <Link href="/resume">
-            <Button variant="secondary">获取简历</Button>
+            <Button variant="secondary" className="px-8 py-3">获取简历</Button>
           </Link>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Experience Section */}
-      <section className="space-y-8">
+      <motion.section 
+        className="space-y-10" 
+        variants={pageFloatVariants}
+      >
         <Heading2>经历</Heading2>
-        <div className="space-y-6">
-          <div className="relative pl-6 border-l border-slate-200 dark:border-slate-800 space-y-2">
-            <div className="absolute left-[-5px] top-2 h-2.5 w-2.5 rounded-full bg-brand-blue-light" />
-            <div className="flex justify-between items-start">
+        <div className="space-y-8">
+          <motion.div 
+            className="relative pl-8 border-l-2 border-gradient-to-b from-brand-pink-light to-brand-blue-light dark:from-brand-pink-dark dark:to-brand-blue-dark space-y-4"
+            whileHover={{ x: 4 }}
+            transition={{ duration: 0.1, ease: "easeOut" }}
+          >
+            <div className="absolute left-[-5px] top-3 h-3 w-3 rounded-full bg-gradient-to-r from-brand-pink-light to-brand-blue-light dark:from-brand-pink-dark dark:to-brand-blue-dark shadow-lg shadow-brand-pink-light/25" />
+            <div className="flex justify-between items-start flex-wrap gap-2">
               <Heading3>广东水利电力职业技术学院</Heading3>
-              <Caption>2022 - 2025</Caption>
+              <Caption className="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">2022 - 2025</Caption>
             </div>
-            <Body>计算机网络技术 · 大专</Body>
-            <div className="flex flex-wrap gap-2 pt-1">
+            <Body className="text-slate-600 dark:text-slate-300">计算机网络技术 · 大专</Body>
+            <div className="flex flex-wrap gap-2 pt-2">
               <Badge>应届毕业生</Badge>
               <Badge>前端爱好者</Badge>
+              <Badge>React</Badge>
+              <Badge>TypeScript</Badge>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Skills Section */}
-      <section className="space-y-6">
+      <motion.section 
+        className="space-y-8" 
+        variants={pageFloatVariants}
+      >
         <Heading2>技能栈</Heading2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="space-y-4">
-            <Heading3>Frontend</Heading3>
-            <div className="flex flex-wrap gap-2">
-              <Badge>React</Badge>
-              <Badge>Next.js</Badge>
-              <Badge>TypeScript</Badge>
-              <Badge>Tailwind CSS</Badge>
-              <Badge>Vue.js</Badge>
-            </div>
-          </Card>
-          <Card className="space-y-4">
-            <Heading3>Tools & Others</Heading3>
-            <div className="flex flex-wrap gap-2">
-              <Badge>Git</Badge>
-              <Badge>Node.js</Badge>
-              <Badge>Figma</Badge>
-              <Badge>Vercel</Badge>
-              <Badge>Docker</Badge>
-            </div>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.1, ease: "easeOut" }}
+          >
+            <Card className="h-full space-y-6 border-gradient-to-r from-pink-100/50 to-blue-100/50 dark:from-pink-900/20 dark:to-blue-900/20">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-brand-pink-light to-brand-blue-light flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">F</span>
+                </div>
+                <Heading3>Frontend</Heading3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Badge>React</Badge>
+                <Badge>Next.js</Badge>
+                <Badge>TypeScript</Badge>
+                <Badge>Tailwind CSS</Badge>
+                <Badge>Vue.js</Badge>
+                <Badge>HTML5</Badge>
+                <Badge>CSS3</Badge>
+                <Badge>JavaScript</Badge>
+              </div>
+            </Card>
+          </motion.div>
+          
+          <motion.div
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.1, ease: "easeOut" }}
+          >
+            <Card className="h-full space-y-6 border-gradient-to-r from-blue-100/50 to-pink-100/50 dark:from-blue-900/20 dark:to-pink-900/20">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-brand-blue-light to-brand-pink-light flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">T</span>
+                </div>
+                <Heading3>Tools & Others</Heading3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Badge>Git</Badge>
+                <Badge>Node.js</Badge>
+                <Badge>Figma</Badge>
+                <Badge>Vercel</Badge>
+                <Badge>Docker</Badge>
+                <Badge>npm</Badge>
+                <Badge>VS Code</Badge>
+                <Badge>Postman</Badge>
+              </div>
+            </Card>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Projects Section */}
-      <section className="space-y-8">
-        <div className="flex justify-between items-end">
+      <motion.section 
+        className="space-y-10" 
+        variants={pageFloatVariants}
+      >
+        <div className="flex justify-between items-end flex-wrap gap-4">
           <Heading2>精选作品</Heading2>
           <Link href="/projects">
-            <Button variant="secondary" className="px-4 py-1.5 text-xs">
+            <Button variant="secondary" className="px-6 py-2 text-sm">
               查看全部
             </Button>
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-6">
-          <Link href="/projects/personal-portfolio">
-            <Card className="group hover:border-brand-blue-light/50 transition-colors">
-              <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <Heading3 className="group-hover:text-brand-blue-light transition-colors">
-                    Personal Portfolio
-                  </Heading3>
-                  <div className="h-2 w-2 rounded-full bg-green-500" />
+        <div className="grid grid-cols-1 gap-8">
+          <motion.div
+            variants={projectFloatVariants}
+            initial="initial"
+            animate="animate"
+            whileHover={{ y: -12 }}
+            transition={{ duration: 0.1, ease: "easeOut" }}
+          >
+            <Link href="/projects/personal-portfolio">
+              <Card className="group h-full border-gradient-to-r from-brand-pink-light/20 to-brand-blue-light/20 dark:from-brand-pink-dark/20 dark:to-brand-blue-dark/20 hover:from-brand-pink-light/40 hover:to-brand-blue-light/40 dark:hover:from-brand-pink-dark/40 dark:hover:to-brand-blue-dark/40 transition-all duration-500">
+                <div className="space-y-6">
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-2">
+                      <Heading3 className="group-hover:text-brand-blue-light transition-colors duration-300">
+                        Personal Portfolio
+                      </Heading3>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                        <Caption className="text-green-600 dark:text-green-400">已完成</Caption>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="w-12 h-12 rounded-full bg-gradient-to-r from-brand-pink-light to-brand-blue-light flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                    >
+                      P
+                    </motion.div>
+                  </div>
+                  <Body className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    基于 Next.js 14 和 Tailwind CSS 构建的极简作品集网站。参考 Read.cv
+                    风格，支持响应式和暗色模式。
+                  </Body>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge>Next.js</Badge>
+                    <Badge>TypeScript</Badge>
+                    <Badge>Tailwind CSS</Badge>
+                    <Badge>Framer Motion</Badge>
+                  </div>
                 </div>
-                <Body>
-                  基于 Next.js 14 和 Tailwind CSS 构建的极简作品集网站。参考 Read.cv
-                  风格，支持响应式和暗色模式。
-                </Body>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Next.js</Badge>
-                  <Badge>TypeScript</Badge>
-                  <Badge>Tailwind CSS</Badge>
-                </div>
-              </div>
-            </Card>
-          </Link>
+              </Card>
+            </Link>
+          </motion.div>
 
-          <Link href="/projects/ecommerce-dashboard">
-            <Card className="group hover:border-brand-pink-light/50 transition-colors">
-              <div className="space-y-4">
-                <Heading3 className="group-hover:text-brand-pink-light transition-colors">
-                  E-commerce Dashboard
-                </Heading3>
-                <Body>
-                  一个功能完整的电商后台管理系统，包含订单管理、库存监控和数据可视化分析。
-                </Body>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>React</Badge>
-                  <Badge>Recharts</Badge>
-                  <Badge>Node.js</Badge>
+          <motion.div
+            variants={projectFloatVariants}
+            initial="initial"
+            animate="animate"
+            whileHover={{ y: -12 }}
+            transition={{ duration: 0.1, ease: "easeOut" }}
+          >
+            <Link href="/projects/ecommerce-dashboard">
+              <Card className="group h-full border-gradient-to-r from-brand-blue-light/20 to-brand-pink-light/20 dark:from-brand-blue-dark/20 dark:to-brand-pink-dark/20 hover:from-brand-blue-light/40 hover:to-brand-pink-light/40 dark:hover:from-brand-blue-dark/40 dark:hover:to-brand-pink-dark/40 transition-all duration-500">
+                <div className="space-y-6">
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-2">
+                      <Heading3 className="group-hover:text-brand-pink-light transition-colors duration-300">
+                        E-commerce Dashboard
+                      </Heading3>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-yellow-500 animate-pulse" />
+                        <Caption className="text-yellow-600 dark:text-yellow-400">开发中</Caption>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="w-12 h-12 rounded-full bg-gradient-to-r from-brand-blue-light to-brand-pink-light flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                    >
+                      E
+                    </motion.div>
+                  </div>
+                  <Body className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    一个功能完整的电商后台管理系统，包含订单管理、库存监控和数据可视化分析。
+                  </Body>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge>React</Badge>
+                    <Badge>Recharts</Badge>
+                    <Badge>Node.js</Badge>
+                    <Badge>MongoDB</Badge>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          </Link>
+              </Card>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            variants={projectFloatVariants}
+            initial="initial"
+            animate="animate"
+            whileHover={{ y: -12 }}
+            transition={{ duration: 0.1, ease: "easeOut" }}
+          >
+            <Link href="/projects/snake-game">
+              <Card className="group h-full border-gradient-to-r from-green-100/50 to-blue-100/50 dark:from-green-900/20 dark:to-blue-900/20 hover:from-green-100/70 hover:to-blue-100/70 dark:hover:from-green-900/40 dark:hover:to-blue-900/40 transition-all duration-500">
+                <div className="space-y-6">
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-2">
+                      <Heading3 className="group-hover:text-green-600 dark:text-green-400 transition-colors duration-300">
+                        贪吃蛇游戏
+                      </Heading3>
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-yellow-500 animate-pulse" />
+                        <Caption className="text-yellow-600 dark:text-yellow-400">开发中</Caption>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
+                    >
+                      🐍
+                    </motion.div>
+                  </div>
+                  <Body className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    使用 HTML5 + TypeScript 开发的现代化贪吃蛇游戏，采用 Web Components 架构，支持响应式设计和 PWA 离线使用。
+                  </Body>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge>HTML5</Badge>
+                    <Badge>TypeScript</Badge>
+                    <Badge>CSS3</Badge>
+                    <Badge>Web Components</Badge>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
-      <section className="pt-12 border-t border-slate-200 dark:border-slate-800">
-        <div className="flex flex-col items-center text-center space-y-6">
+      <motion.section 
+        className="pt-16 border-t border-slate-200/50 dark:border-slate-700/50" 
+        variants={pageFloatVariants}
+      >
+        <div className="flex flex-col items-center text-center space-y-8">
           <Heading2>保持联系</Heading2>
-          <Body>
+          <BodyLarge className="max-w-2xl">
             目前我正在寻找新的工作机会。如果你对我的作品感兴趣，或者想聊聊技术，欢迎随时联系我。
-          </Body>
-          <div className="flex gap-4">
-            <Button href="mailto:3139961932@qq.com">
+          </BodyLarge>
+          <motion.div 
+            className="flex gap-6 flex-wrap justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Button 
+              href="mailto:3139961932@qq.com"
+              className="px-8 py-3"
+            >
               发送邮件
             </Button>
-            <Button href="https://github.com/connormk" target="_blank" variant="secondary">
+            <Button 
+              href="https://github.com/connormk" 
+              target="_blank" 
+              variant="secondary"
+              className="px-8 py-3"
+            >
               GitHub
             </Button>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <footer className="pt-24 pb-12 text-center">
-        <Caption>© 2026 MKCONNOR. Built with Passion in Guangzhou.</Caption>
-      </footer>
-    </div>
+      <motion.footer 
+        className="pt-24 pb-16 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+      >
+        <Caption className="text-slate-400 dark:text-slate-500">
+          © 2026 MKCONNOR. Built with Passion in Guangzhou.
+        </Caption>
+      </motion.footer>
+    </motion.div>
   );
 }
