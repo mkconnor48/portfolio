@@ -241,17 +241,17 @@ export default function Home() {
             whileHover={{ y: -12 }}
             transition={{ duration: 0.1, ease: "easeOut" }}
           >
-            <Link href="/projects/ecommerce-dashboard">
+            <Link href="/projects/isat-edge-detection">
               <Card className="group h-full border-gradient-to-r from-brand-blue-light/20 to-brand-pink-light/20 dark:from-brand-blue-dark/20 dark:to-brand-pink-dark/20 hover:from-brand-blue-light/40 hover:to-brand-pink-light/40 dark:hover:from-brand-blue-dark/40 dark:hover:to-brand-pink-dark/40 transition-all duration-500">
                 <div className="space-y-6">
                   <div className="flex justify-between items-start">
                     <div className="space-y-2">
                       <Heading3 className="group-hover:text-brand-pink-light transition-colors duration-300">
-                        E-commerce Dashboard
+                        ISAT 边缘检测增强工具
                       </Heading3>
                       <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-full bg-yellow-500 animate-pulse" />
-                        <Caption className="text-yellow-600 dark:text-yellow-400">开发中</Caption>
+                        <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                        <Caption className="text-green-600 dark:text-green-400">已完成</Caption>
                       </div>
                     </div>
                     <motion.div
@@ -259,17 +259,17 @@ export default function Home() {
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                     >
-                      E
+                      🖼️
                     </motion.div>
                   </div>
                   <Body className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                    一个功能完整的电商后台管理系统，包含订单管理、库存监控和数据可视化分析。
+                    为开源图像标注工具 ISAT 添加智能边缘检测与自动吸附功能，提升多边形标注精度和效率。
                   </Body>
                   <div className="flex flex-wrap gap-2">
-                    <Badge>React</Badge>
-                    <Badge>Recharts</Badge>
-                    <Badge>Node.js</Badge>
-                    <Badge>MongoDB</Badge>
+                    <Badge>Python</Badge>
+                    <Badge>PyQt5</Badge>
+                    <Badge>OpenCV</Badge>
+                    <Badge>计算机视觉</Badge>
                   </div>
                 </div>
               </Card>
@@ -292,8 +292,8 @@ export default function Home() {
                         贪吃蛇游戏
                       </Heading3>
                       <div className="flex items-center gap-2">
-                        <div className="h-2 w-2 rounded-full bg-yellow-500 animate-pulse" />
-                        <Caption className="text-yellow-600 dark:text-yellow-400">开发中</Caption>
+                        <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                        <Caption className="text-green-600 dark:text-green-400">已完成</Caption>
                       </div>
                     </div>
                     <motion.div
@@ -343,7 +343,7 @@ export default function Home() {
               发送邮件
             </Button>
             <Button 
-              href="https://github.com/connormk" 
+              href="https://github.com/mkconnor48" 
               target="_blank" 
               variant="secondary"
               className="px-8 py-3"

@@ -6,6 +6,18 @@ import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 
+// 浮出动画变体
+const floatVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+};
+
+// 按钮浮出动画变体
+const buttonFloatVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+};
+
 interface CardProps {
   children: React.ReactNode;
   className?: string;
@@ -13,14 +25,19 @@ interface CardProps {
 
 export function Card({ children, className }: CardProps) {
   return (
-    <div
+    <motion.div
+      variants={floatVariants}
+      initial="initial"
+      animate="animate"
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.1, ease: "easeOut" }}
       className={cn(
-        "rounded-lg bg-white dark:bg-slate-900 p-6 shadow-soft border border-slate-200 dark:border-slate-800",
+        "rounded-xl bg-white dark:bg-slate-900 p-6 shadow-soft border border-slate-200/50 dark:border-slate-800/50 hover:border-slate-300/50 dark:hover:border-slate-700/50 backdrop-blur-sm transition-all duration-100 hover:shadow-lg",
         className
       )}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -32,12 +49,16 @@ interface BadgeProps {
 export function Badge({ children, className }: BadgeProps) {
   return (
     <motion.span
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      variants={floatVariants}
+      initial="initial"
+      animate="animate"
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.1, ease: "easeOut" }}
       className={cn(
-        "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200 cursor-default shadow-sm hover:shadow-md transition-shadow",
+        "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 text-slate-700 dark:text-slate-200 cursor-pointer shadow-sm hover:shadow-md transition-all duration-100 border border-slate-200/30 dark:border-slate-600/30",
         className
       )}
+      style={{ cursor: 'url("data:image/svg+xml,%3Csvg width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M5 12H19M19 12L12 5M19 12L12 19\' stroke=\'%2364748b\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'/%3E%3C/svg%3E") 12 12, auto' }}
     >
       {children}
     </motion.span>
@@ -64,34 +85,34 @@ export function Button({
   target,
 }: ButtonProps) {
   const baseClasses =
-    "px-6 py-2.5 rounded-full font-medium transition-all duration-200 text-sm inline-flex items-center justify-center";
+    "px-8 py-3 rounded-full font-medium transition-all duration-300 text-sm inline-flex items-center justify-center relative overflow-hidden";
 
   const variantClasses = {
     primary:
-      "bg-gradient-to-r from-brand-pink-light to-brand-blue-light text-white hover:shadow-md active:scale-95",
+      "bg-gradient-to-r from-brand-pink-light to-brand-blue-light text-white hover:shadow-xl hover:shadow-brand-pink-light/25",
     secondary:
-      "bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800",
+      "bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm text-slate-900 dark:text-slate-100 border border-slate-200/50 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:border-slate-300/50 dark:hover:border-slate-600/50 hover:shadow-lg",
   };
 
   const content = (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-      className="w-full h-full"
+    <motion.button
+      variants={buttonFloatVariants}
+      initial="initial"
+      animate="animate"
+      whileHover={{ y: -6, scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.05, ease: "easeOut" }}
+      className={cn(
+        baseClasses,
+        variantClasses[variant],
+        disabled && "opacity-50 cursor-not-allowed",
+        className
+      )}
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
     >
-      <button
-        className={cn(
-          baseClasses,
-          variantClasses[variant],
-          disabled && "opacity-50 cursor-not-allowed",
-          className
-        )}
-        onClick={disabled ? undefined : onClick}
-        disabled={disabled}
-      >
-        {children}
-      </button>
-    </motion.div>
+      <span className="relative z-10">{children}</span>
+    </motion.button>
   );
 
   if (href) {
@@ -107,7 +128,7 @@ export function Button({
     );
   }
 
-  return <div className="inline-block">{content}</div>;
+  return content;
 }
 
 export function ThemeToggle() {
@@ -120,23 +141,33 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <div className="p-2 w-10 h-10 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900" />
+      <div className="p-3 w-12 h-12 rounded-full border border-slate-200/50 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-sm" />
     );
   }
 
   return (
     <motion.button
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      variants={floatVariants}
+      initial="initial"
+      animate="animate"
+      whileHover={{ y: -8 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.05, ease: "easeOut" }}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm"
+      className="p-3 rounded-full border border-slate-200/50 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm text-slate-900 dark:text-slate-100 hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-all duration-50 shadow-sm hover:shadow-lg"
       aria-label="Toggle Theme"
     >
-      {theme === "dark" ? (
-        <Sun className="h-5 w-5" />
-      ) : (
-        <Moon className="h-5 w-5" />
-      )}
+      <motion.div
+        initial={false}
+        animate={{ rotate: theme === "dark" ? 180 : 0 }}
+        transition={{ duration: 0.15, ease: "easeInOut" }}
+      >
+        {theme === "dark" ? (
+          <Sun className="h-6 w-6" />
+        ) : (
+          <Moon className="h-6 w-6" />
+        )}
+      </motion.div>
     </motion.button>
   );
 }

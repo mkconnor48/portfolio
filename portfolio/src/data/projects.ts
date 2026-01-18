@@ -18,7 +18,8 @@ export const projects: Project[] = [
     longDescription:
       "这是一个深度参考 Read.cv 视觉风格的个人作品集系统。它不仅展示了基本的个人信息，还集成了磁吸按钮交互、技能标签浮动动画以及在线简历预览功能。采用了最新的 Next.js App Router 架构和 Tailwind CSS 4 预发布版本进行样式构建。",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/connormk/selfInfo",
+    github: "https://github.com/mkconnor48/selfInfo",
+    link: "https://portfolio-five-omega-95.vercel.app/",
     status: "completed",
   },
   {
@@ -39,7 +40,19 @@ export const projects: Project[] = [
     longDescription:
       "这是一个基于现代 Web 技术栈开发的贪吃蛇游戏。使用 HTML5 + CSS3 + JavaScript (ES2020+) 作为基础，TypeScript 作为主要开发语言，Vite 作为构建工具。采用 Lit Element 实现 Web Components 组件化开发，状态机模式管理游戏状态。游戏支持跨浏览器运行、响应式设计、移动端触摸操作和 PWA 离线使用，目标达到 60 FPS 的流畅体验。",
     tags: ["HTML5", "TypeScript", "CSS3", "Web Components", "Vite"],
-    github: "https://github.com/connormk/贪吃蛇",
-    status: "in-progress",
+    github: "https://github.com/mkconnor48/贪吃蛇",
+    link: "https://mkconnor48-snake-game.netlify.app/",
+    status: "completed",
+  },
+  {
+    id: "isat-edge-detection",
+    title: "ISAT 边缘检测增强工具",
+    description:
+      "为开源图像标注工具 ISAT 添加智能边缘检测与自动吸附功能，提升多边形标注精度和效率。",
+    longDescription:
+      "ISAT (Interactive Segmentation Annotation Tool) 是一个基于 SAM (Segment Anything Model) 的交互式图像分割标注工具。我在此开源项目基础上实现了重要的功能增强：设计并实现了 Alt 键触发的智能边缘吸附功能，解决了用户在创建多边形标注时需要精确点击物体边缘的痛点。技术实现包括完整的边缘检测工具类（支持 Canny、Sobel 算法）、智能缓存机制提升大图像处理性能、最近边缘点查找算法，以及与现有 PyQt5 界面的无缝集成。此外还实现了鼠标中键拖拽图像导航功能。整个项目采用 OpenSpec 工作流进行系统化设计，展示了从需求分析到具体实现的完整工程能力。",
+    tags: ["Python", "PyQt5", "OpenCV", "计算机视觉", "图像处理"],
+    github: "https://github.com/mkconnor48/ISAT_with_segment_anything.git",
+    status: "completed",
   },
 ];
