@@ -23,6 +23,30 @@ export const projects: Project[] = [
     status: "completed",
   },
   {
+    id: "ai-chat-system",
+    title: "AIChat - 智能AI聊天系统",
+    description:
+      "基于Spring Boot和React开发的智能AI聊天系统，支持多角色聊天、聊天记录管理、实时消息发送等功能。",
+    longDescription:
+      `AIChat是一款基于Spring Boot和React开发的智能AI聊天系统，旨在提供流畅、高效的AI对话体验。该系统支持多角色聊天、聊天记录管理、实时消息发送等功能，用户可以根据不同场景选择合适的AI角色进行对话。
+
+核心功能：
+- 多角色聊天：支持创建和选择不同的AI角色进行对话
+- 聊天记录管理：保存聊天历史，支持删除、清理空聊天记录
+- 实时消息发送：支持即时消息发送和接收
+- 响应式设计：适配不同设备尺寸，提供良好的移动端体验
+- 角色管理：支持创建、编辑、删除AI角色
+- 用户认证：完整的用户注册、登录、权限管理系统
+
+技术栈：
+- 后端：Spring Boot 3.2.0、Spring Security 3.2.0、MongoDB、Redis、Maven
+- 前端：React 18+、Vite 5.0+、React Router 6.0+、Tailwind CSS 3.0+
+- 部署：Nginx、Docker`,
+    tags: ["Spring Boot", "React", "MongoDB", "Redis", "Docker", "Tailwind CSS", "JWT"],
+    github: "https://github.com/mkconnor48/AIChat.git",
+    status: "completed",
+  },
+  {
     id: "ecommerce-dashboard",
     title: "E-commerce Dashboard",
     description:
